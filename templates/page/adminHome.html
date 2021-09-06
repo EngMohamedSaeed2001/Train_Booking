@@ -1,0 +1,44 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="StyleSheet" type="text/css" href="{% static './css/adminhome.css' %}">
+
+    </head>
+     <body>
+        {% include 'parts/navbar.html' %}
+            <section>
+            <img id="logout" src="sign-out-alt-solid.svg" alt="">
+            <i class="fas fa-sign-out-alt"></i>
+            <h1 class="title">Welcome Back!</h1>
+        </section>
+        <section >
+            <a href="{% url 'viewAdmin'%}">
+                <div id="d1" class="options">
+                    <h2>View Profile</h2>
+                </div>
+            </a>
+            <a href="{% url 'addTrain'%}">
+                <div id="d2" class="options">
+                    <h2>Add a Train</h2>
+                </div>
+            </a>
+            <a href="{% url 'viewTrain'%}">
+                <div id="d3" class="options">
+                    <h2>Update a Train</h2>
+                </div>
+            </a>
+            <a href="{% url 'addTrip'%}">
+                <div id="d4" class="options">
+                    <h2>Add a Trip</h2>
+                </div>
+            </a>
+            <a href="{% url 'viewTrip'%}">
+                <div id="d5" class="options">
+                    <h2>Update a Trip</h2>
+                </div>
+            </a>
+
+        </section>
+    </body>
+</html>

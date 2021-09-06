@@ -1,0 +1,55 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width", initial-scale=1.0>
+        <link rel="stylesheet" type="text/css" href="{% static "./css/homepage.css" %}">
+        <script src="{% static './js/homepage.js' %}"></script>
+
+    </head>
+    <body>
+     <section class="nav clear">
+            <div class="container">
+                <a href="{%url 'Home' %}" ><img src="{% static './image/train.png' %}" alt="logo" width="80" height="45"></a>
+                <ul>
+                    <li> <a style="color: #FFEBCD;" href="{% url 'Home' %}">Home</a></li>
+                    <li> <a href="#ourSer">Services</a></li>
+                    <li> <a href="#about">About</a></li>
+                    <li> <a href="#contact">Contact us</a></li>
+                </ul>
+            </div> <!-- end of container -->
+        </section><!-- end of nav -->
+        <section class="title">
+            <div>
+            <h1>Welcome To Trainevia</h1>
+            <h4>Your online train Station</h4>
+            </div>
+        </section>
+        <section class="content">
+            <div class="outline">
+                <p >
+                    <h4>Log in to your Accout</h4>
+                </p>
+                <div class="form" >
+                    <form onsubmit="return validate();"  method="POST">
+                        {% csrf_token %}
+                        <label for="un">UserName</label>
+                        <input id="un" type="text" name="username" placeholder="Enter your username">
+                        <label for="myInput">Password</label>
+                        <input id="myInput" type="password" name="password" placeholder="Enter your Password"><br>
+                        <input type="checkbox" onclick="myFunction()">Show Password<br>
+                        <a href="">
+                            <button type="submit">Submit</button>
+                        </a>
+                    </form>
+                </div>
+                <p id="line">
+                    Don't have Account <a href="{% url 'signUp' %}">SignUp</a>
+                </p>
+            </div>
+
+        </section>
+    </body>
+</html>

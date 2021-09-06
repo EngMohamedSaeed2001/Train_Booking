@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="StyleSheet" type="text/css" href="{% static './css/seatssearch.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+</head>
+<body>
+{% include 'parts/navbar.html' %}
+<div class="list">
+    {% for trip in train %}
+        <div class="container-md">
+            <div class="card car" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Trip Id : {{ trip.trip.tripId }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Train name : {{ trip.trainName }} / Train ID
+                        : {{ trip.trainId }}</h6>
+                    <p class="card-text">
+                        {% if trip.status == 'available' %}
+                            <span>Status :<span style="color: #006b1b">{{ trip.status }}</span> </span>
+                            <span><span> / </span>Available seats :  <span> {{ trip.numberOfSeats }}</span></span>
+
+                        {% else %}
+                            <span>Status :<span style="color: red">{{ trip.status }}</span> </span>
+                            <span><span> / </span>Available seats:  <span> {{ trip.numberOfSeats }}</span></span>
+
+                        {% endif %}
+                    </p>
+                    <button type="button" class="btn btn-outline-secondary">
+                        <a href="{% url 'updateTrain' trip.trainId %}"> Update </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br>
+    {% endfor %}
+</div>
+</section>
+
+</body>
+</html>

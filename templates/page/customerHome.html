@@ -1,0 +1,29 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="StyleSheet" type="text/css" href="{% static './css/customerhome.css' %}">
+
+    </head>
+     <body>
+        {% include 'parts/navbar.html' %}
+      <section>
+            <img id="logout" src="sign-out-alt-solid.svg" alt="">
+            <i class="fas fa-sign-out-alt"></i>
+            <h1 class="title">Welcome Back!</h1>
+        </section>
+        <section >
+            <a href="{% url 'viewCustomer'%}">
+                <div id="d1" class="options">
+                    <h2>View Profile</h2>
+                </div>
+            </a>
+            <a href="{% url 'seats_search'%}">
+                <div id="d2" class="options">
+                    <h2>Book a Trip</h2>
+                </div>
+            </a>
+
+        </section>
+    </body>
+</html>

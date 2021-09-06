@@ -1,0 +1,51 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="StyleSheet" type="text/css" href="{% static './css/customersignup.css' %}">
+        <script src="{% static './js/customersignup.js' %}"></script>
+        <script>
+            /*
+            function loadDoc() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+              document.getElementById("ajax").innerHTML = this.responseText;
+              }
+            xhttp.open("GET", "{% url 'adminSignUp'%}", true);
+            xhttp.send();
+            }
+            */
+    </script>
+    </head>
+     <body>
+         <section class="content">
+            <div id="ajax">
+            <div class="outline">
+                <div >
+                    <h2 id="firsttab">Customer</h2>
+                    <h2 id="sectab" onclick=""><a href="{% url 'signUp' %}"> Admin</a></h2>
+                </div>
+                <div class="form" >
+                    <form onsubmit="return validate();"  method="POST">
+                        {% csrf_token %}
+
+                       <label for="un">Username</label>
+                        <input id="un" type="text" name="username" placeholder="Enter your username"><br>
+
+                        <label for="E-Mail">E-Mail</label>
+                        <input id="E-Mail" type="email" name="email" placeholder="Enter your E-mail"><br>
+
+                        <label for="myInput">Password</label>
+                        <input id="myInput" type="password" name="password1" placeholder="Enter your Password"><br>
+                        <label for="myInput">Confirm password</label>
+                        <input id="myInput" type="password" name="password2" placeholder="Confirm your Password"><br>
+
+                        <button type="submit">Submit</button>
+                      <a href="{% url 'Home' %}" type="button">Back</a><br>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </section>
+    </body>
+</html>

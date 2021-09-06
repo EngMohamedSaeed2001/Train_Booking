@@ -1,0 +1,64 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="StyleSheet" type="text/css" href="{% static './css/seatssearch.css' %}">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+        <script src="{% static './js/seatssearch.js' %}"></script>
+    </head>
+     <body>
+        {% include 'parts/navbar.html' %}
+     <section class="form">
+            <div>
+                <form onsubmit="return validate();" method="GET"  >
+                    <label for="sc">Source City </label>
+                    <input id="sc" type="search" placeholder="Enter the source city" name="sCity">
+                     <label for="dc">Destination City </label>
+                    <input id="dc" type="search" placeholder="Enter the destination city" name="dCity">
+                    <label for="d">Date</label>
+                    <input id="d" type="date" placeholder="Enter the trip date" name="date"> <br>
+                    <label for="t">Time</label>
+                    <input id="t" type="time" placeholder="Enter the trip time" name="time">
+                    <label for="avs">Available Seats</label>
+                    <input id="avs" type="search" placeholder="the number of seats" name="seats">
+                    <button type="submit"><a href="{% url 'seats_search' %}"></a>Search</button>
+                    <button><a href="{% url 'customerHome' %}">Back</a></button>
+                </form>
+            </div>
+            <div class="list">
+                {% for trip in search %}
+                <div class="container-md">
+                    <div class="card car" style="width: 18rem;">
+                          <div class="card-body">
+                            <h5 class="card-title">Trip Id : {{ trip.trip.tripId}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Train name : {{ trip.trainName }} / Train ID : {{ trip.trainId }}</h6>
+                                {% if trip.status == 'available' %}
+                                  <p class="card-text">
+                                       <span>Status :<span style="color: #006b1b">{{ trip.status }}</span> </span>
+                                            <span><span> / </span>Available seats :  <span> {{ trip.trip.seats }}</span></span>
+                                            <p>Source city : {{ trip.trip.sCity }} / Destination city : {{ trip.trip.dCity }}</p>
+                                            <p>Date : {{ trip.trip.date }} / Time :{{ trip.trip.time }}</p>
+
+                                        {% else %}
+                                            <span>Status :<span style="color: red">{{ trip.status }}</span> </span>
+                                         <span><span> / </span>Available seats :  <span> {{ trip.trip.seats }}</span></span>
+                                            <p>Source city : {{ trip.trip.sCity }} / Destination city : {{ trip.trip.dCity }}</p>
+                                            <p>Date : {{ trip.trip.date }} / Time :{{ trip.trip.time }}</p>
+
+                                        {% endif %}
+                                 </p>
+                                  <button type="button" class="btn btn-outline-secondary">
+                                      <a href="{% url 'payment' trip.trainId %}" class="card-link">Book</a>
+                                  </button>
+                          </div>
+                        </div>
+                    </div>
+                    <br>
+                 {% endfor %}
+                </div>
+            </div>
+
+        </section>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+{% load static %}
+<script>
+      function about() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+              document.getElementById("click").innerHTML = this.responseText;
+              }
+            xhttp.open("GET", "{% url 'ajax1' %}", true);
+            xhttp.send();
+            }
+</script>
+ <section class="nav clear">
+            <div class="container">
+                <a href="{% url 'Home' %}" ><img src="{% static './image/train.png' %}" alt="logo" width="80" height="45"></a>
+                <ul>
+                    <li> <a style="color: #FFEBCD;" href="{% url 'Home' %}">Home</a></li>
+                    <li> <a href="#ourSer">Services</a></li>
+                    <li> <a href=" {% url 'ajax1' %}" id="click" onclick="about()">About Us</a></li>
+                    <li> <a href="#contact">Contact us</a></li>
+                    <li> <a href="{% url 'Home'%}">Log Out</a></li>
+                </ul>
+            </div> <!-- end of container -->
+        </section><!-- end of nav -->

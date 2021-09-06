@@ -1,0 +1,37 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+      <link rel="StyleSheet" type="text/css" href="{% static './css/seatssearch.css' %}">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+    </head>
+     <body>
+        {% include 'parts/navbar.html' %}
+     <div class="list">
+         {% for train in train %}
+
+              <div class="container-md">
+                    <div class="card car" style="width: 18rem;">
+                          <div class="card-body">
+                            <h5 class="card-title">Trip Id : {{ train.trip.id}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Available seats : {{ train.trip.seats }}</h6>
+                                  <p class="card-text">
+                                    <p>Source city : {{ train.trip.sCity }} / Destination city : {{ train.trip.dCity }}</p>
+                                    <p>Date : {{ train.trip.date }} / Time :{{ train.trip.time }}</p>
+                                 </p>
+                              <button type="button" class="btn btn-outline-secondary">
+                                    <a href="{% url 'cancelBooking' train.trainId %}"> Cancel </a>
+                                  </button>
+                          </div>
+                        </div>
+                    </div>
+         {% endfor %}
+                    <br>
+
+            </div>
+        </section>
+
+    </body>
+</html>

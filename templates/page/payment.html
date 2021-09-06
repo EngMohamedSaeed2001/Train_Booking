@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width", initial-scale=1.0>
+        <link rel="stylesheet" type="text/css" href="{% static './css/payment.css' %}">
+          <script src="{% static './js/payment.js'%}"></script>
+    </head>
+    <body>
+        {% include 'parts/navbar.html' %}
+        <section class="content">
+            <div class="outline">
+                <div class="form" >
+                    <form onsubmit="return validate();" method="POST">
+                         {% csrf_token %}
+                        <label for="cards">Choose a Card Type</label>
+                        <select name="cards" id="card">
+                        <option value="vd">Visa Card</option>
+                        <option value="md">Mastercard</option>
+                        </select><br>
+                        <label for="myInput">Card Number</label>
+                        <input id="myInput" type="txt" placeholder="Enter your Card Number" required><br>
+                        <label for="ed">Expiration Date</label>
+                        <input id="ed" type="number" min="01" max="12" placeholder="MM" required>
+                        <input id="ed"  type="number" min="2021" max="2030" placeholder="YYYY" required><br>
+                        <label for="pn">Security Code</label>
+                        <input id="pn" type="text" placeholder="Enter your Code(CVV)" required><br>
+                        <button type="submit"><a href="{% url 'viewCustomerTrips' %}">Pay</a></button>
+                        <button><a href="{% url 'seats_search' %}">Back</a></button><br>
+                    </form>
+                </div>
+            </div>
+
+        </section>
+
+    </body>
+</html>

@@ -1,0 +1,40 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="StyleSheet" type="text/css" href="{% static './css/cancellation.css' %}">
+         <script>
+            function validate()
+            {
+                var tid = document.getElementById("ti").value;
+                if(tid == "")
+                {
+                    alert("Trip Id cannot be blank");
+                    return false;
+                }
+                else if(tid.length != 4)
+                {
+                    alert("Id must be 4 digits");
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        </script>
+    </head>
+     <body>
+        {% include 'parts/navbar.html' %}
+
+        <section class="form">
+            <div>
+                <form onsubmit="return validate();" method="POST">
+                    {% csrf_token %}
+                    <button type="submit">Cancel Trip</button>
+                    <a href="{% url 'viewTrip' %}" type="button">Back</a><br>
+                </form>
+            </div>
+        </section>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="StyleSheet" type="text/css" href="{% static './css/updatetrain.css' %}">
+
+    </head>
+     <body>
+        {% include 'parts/navbar.html' %}
+        <section class="content">
+            <div class="outline">
+                <div class="form" >
+                    <h3>Update train info </h3>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form}}
+                        <button type="submit">Update</button>
+                        <button><a href="{% url 'viewTrain' %}">Back</a></button><br>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </body>
+</html>

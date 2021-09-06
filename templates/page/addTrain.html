@@ -1,0 +1,26 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="StyleSheet" type="text/css" href="{% static './css/addtrain.css' %}">
+        <script src="{% static './js/addtrain.js' %}"></script>
+    </head>
+    <body>
+        {% include 'parts/navbar.html' %}
+        <section class="content">
+            <div class="outline"> 
+                <div class="form" >
+                    <h3>Add new train </h3>
+                    <form method="POST" onsubmit="return check();" >
+                        {% csrf_token %}
+                        {{ form1 }}
+                        <button type="submit">Add</button>
+                        <button><a href="{% url 'adminHome' %}">Back</a></button><br>
+                    </form>
+                </div>
+            </div>
+        </section>  
+
+       
+    </body>
+</html>

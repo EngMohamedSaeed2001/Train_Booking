@@ -1,0 +1,24 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="StyleSheet" type="text/css" href="{% static './css/updatecustomer.css' %}">
+        <script src="{% static './js/updatecustomer.js' %}"></script>
+    </head>
+     <body>
+        {% include 'parts/navbar.html' %}
+       <section class="content">
+            <div class="outline">
+                <div class="form" >
+                    <h3>Update Your Profile Info </h3>
+                    <form onsubmit="return validate();" method="POST">
+                        {% csrf_token %}
+                        {{ userForm }}
+                        <button type="submit">Update</button>
+                        <button><a href="{% url 'viewCustomer'%}">Back</a></button><br>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
